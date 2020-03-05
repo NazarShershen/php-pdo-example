@@ -1,6 +1,7 @@
 # Legendary Artifacts Shop in PHP
 
-We are using dockerized development environment, as described here: <br/>
+We are using dockerized development environment, as described here (almost):
+<br/>
 http://geekyplatypus.com/dockerise-your-php-application-with-nginx-and-php7-fpm/
 
 The app is going to run locally on http://php-docker.local:8080/
