@@ -11,7 +11,7 @@ In order to make your machine recognize this address, you should edit your
 
 You may use this simple command in linux terminal:
 ```
-sudo echo "127.0.0.1  php-docker.local" >> /etc/hosts
+echo "127.0.0.1  php-docker.local" | sudo tee -a /etc/hosts
 ```
 
 Then install docker & docker-compose, here are some guides:
