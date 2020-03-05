@@ -1,0 +1,159 @@
+@font-face {
+  font-family: 'Fontin-SmallCaps';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Fontin-SmallCaps'), url('../fonts/Fontin-SmallCaps.ttf') format('truetype');
+}
+/* * {
+ box-sizing: border-box;
+ } */
+body {
+  background-color: #0f0f0f;
+  margin: 0;
+}
+header {
+  margin: 0;
+  padding: 20px;
+  border-bottom: 1px solid #5e4f45;
+}
+header > h1 {
+  color: #dfcf99;
+  text-align: center;
+  font-family: 'Fontin-SmallCaps', Verdana, Arial, Helvetica, sans-serif;
+  margin: 0;
+}
+.artifacts-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: center;
+  margin-top: 2em;
+}
+.artifacts-container ul {
+  padding: 0;
+  list-style: none;
+}
+.artifact-image {
+  height: 10em;
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+.artifact-image:hover {
+  cursor: pointer;
+  background-color: #24272e;
+}
+.artifact-image > img {
+  object-fit: contain;
+  max-width: 85%;
+  max-height: 85%;
+}
+
+
+/* Stolen & modified CSS, hehe :D */
+/* Source: https://pathofexile.gamepedia.com/Greed%27s_Embrace */
+.infobox-page-container {
+  margin-right: 1em;
+  margin-bottom: 1em;
+  line-height: 1.5;
+  font-size: calc(0.75em + 0.75vw);
+}
+.infobox-page-container .header {
+  font-size: 1.1em;
+  display: inline-block;
+  margin-bottom: 0.5em;
+}
+.item-box {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  box-sizing: border-box;
+  border-width: 1px;
+  border-style: solid;
+  padding: 2px;
+  min-width: 16em;
+  max-width: 16em;
+  text-align: center;
+  font-family: 'Fontin-SmallCaps', Verdana, Arial, Helvetica, sans-serif;
+  font-size: 1.05em;
+  font-weight: 400;
+  font-style: normal;
+  font-variant-ligatures: none;
+  color: #7f7f7f;
+  background-color: #000;
+}
+.item-box > .header {
+  overflow: hidden;
+  position: relative;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 1.15em;
+  background-repeat: no-repeat, no-repeat, repeat-x;
+}
+.item-box > .header.double {
+  padding: 3px 44px;
+  height: 52px;
+  width: 100%;
+  box-sizing: border-box;
+  line-height: 22px;
+  background-image: url('../images/Item-ui-header-double.png'), url('../images/Item-ui-header-double.png'), url('../images/Item-ui-header-double.png');
+}
+.item-box.unique {
+  border-color: #af6025;
+  box-shadow: 0 0 10px 2px #fda564;
+}
+.item-box.unique > .header {
+  color: #af6025;
+}
+.item-box.unique > .header.double {
+  background-position: left -162px, right -270px, center -216px;
+}
+.item-stats {
+  padding: 7px 12px;
+  margin: 0 auto;
+}
+.item-stats > .group {
+  margin: 0 auto;
+}
+.text-color.mod, .tc.mod {
+  font-family: 'Fontin-SmallCaps', Verdana, Arial, Helvetica, sans-serif;
+  font-variant-ligatures: none;
+  color: #8888ff;
+}
+.text-color.default, .tc.default {
+  color: #7f7f7f;
+}
+.text-color.value, .tc.value {
+  color: #ffffff;
+}
+.text-color.flavour, .tc.flavour {
+  color: #af6025;
+  font-style: italic;
+}
+.text-color a, .tc a {
+  color: inherit !important;
+  text-decoration: none;
+}
+.text-color a:hover, .tc a:hover, .text-color a:focus, .tc a:focus {
+  text-decoration: underline;
+}
+.item-box.-unique > .item-stats > .group::after, .item-stat-separator.-unique::before {
+  background-position: 0 -6px;
+}
+.item-stats > .group:nth-last-child(n+2)::after, .item-stat-separator::before {
+  display: block;
+  margin: 5px auto;
+  width: 221px;
+  height: 2px;
+  background-image: url('../../assets/images/Item-ui-separators.png');
+  background-position: 0 0;
+  background-repeat: no-repeat;
+  content: '';
+}
+.price {
+  color: #DFCF99;
+}
+/* Stolen CSS ends here */
+
