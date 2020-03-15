@@ -6,5 +6,9 @@
     "files": [
       "app/misc/functions.php"
     ]
+  },
+  "require": {
+    "php": ">=7.2",
+    "ext-json": "*"
   }
 }

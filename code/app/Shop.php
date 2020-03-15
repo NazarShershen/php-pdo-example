@@ -22,7 +22,8 @@ class Shop
      */
     private function getDataFromDb(): array
     {
-        return include PROJECT_ROOT . '/db/artifacts.php';
+        $artifactsJson = file_get_contents($this->getStoragePath());
+        return json_decode($artifactsJson, true);
     }
 
     /**
@@ -39,5 +40,15 @@ class Shop
         }
 
         return $artifactsCollection;
+    }
+
+    /**
+     * Get path to storage file
+     *
+     * @return string
+     */
+    private function getStoragePath()
+    {
+        return PROJECT_ROOT . '/db/artifacts.json';
     }
 }
