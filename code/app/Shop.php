@@ -4,15 +4,69 @@ namespace App;
 
 class Shop
 {
+    public $goods = [];
+
     /**
-     * Method to retrieve shop items
+     * Shop constructor.
+     */
+    public function __construct()
+    {
+        $this->loadGoods();
+    }
+
+    /**
+     * Goods attribute getter
      *
      * @return array
      */
     public function getGoods(): array
     {
+        return $this->goods;
+    }
+
+    /**
+     * Goods attributes setter
+     *
+     * @param array $value
+     */
+    public function setGoods(array $value): void
+    {
+        $this->goods = $value;
+    }
+
+    /**
+     * Add new item to shop storage
+     *
+     * @param Artifact $item
+     */
+    public function addNewItem(Artifact $item)
+    {
+        $this->goods[] = $item;
+        $this->saveGoods();
+    }
+
+    /**
+     * Save goods to storage
+     */
+    public function saveGoods(): void
+    {
+        $arrayOfGoods = array_map(function ($item) {
+            return $item->toArray();
+        }, $this->goods);
+
+        file_put_contents($this->getStoragePath(), json_encode($arrayOfGoods, [JSON_PRETTY_PRINT, JSON_UNESCAPED_SLASHES]));
+        $this->loadGoods();
+    }
+
+    /**
+     * Method to load shop items
+     *
+     * @return void
+     */
+    private function loadGoods(): void
+    {
         $artifactsData = $this->getDataFromDb();
-        return $this->mapArtifacts($artifactsData);
+        $this->goods = $this->mapArtifacts($artifactsData);
     }
 
     /**
@@ -47,7 +101,7 @@ class Shop
      *
      * @return string
      */
-    private function getStoragePath()
+    private function getStoragePath(): string
     {
         return PROJECT_ROOT . '/db/artifacts.json';
     }

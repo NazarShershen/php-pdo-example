@@ -47,4 +47,22 @@ class Artifact
 
         return $attHtml;
     }
+
+    /**
+     * Array representation of an Artifact object
+     *
+     * @return array
+     */
+    public function toArray(): array
+    {
+        return [
+            'id' => $this->id,
+            'title' => $this->title,
+            'attributes' => $this->attributes,
+            'modifiers' => $this->modifiers,
+            'flavour_text' => $this->description,
+            'image_url' => $this->imageUrl,
+            'price' => $this->price,
+        ];
+    }
 }
