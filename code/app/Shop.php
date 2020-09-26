@@ -2,16 +2,29 @@
 
 namespace App;
 
+use App\DB\DB;
+use App\Repositories\ArtifactsRepository;
+
 class Shop
 {
     public $goods = [];
 
+    private $repository;
+
     /**
      * Shop constructor.
+     * @param ArtifactsRepository $repository
      */
-    public function __construct()
+    public function __construct(ArtifactsRepository $repository)
     {
+        $this->repository = $repository;
         $this->loadGoods();
+    }
+
+    public function getShopItem(int $id)
+    {
+        $artifact = $this->repository->find($id);
+        return $artifact;
     }
 
     /**
@@ -65,8 +78,8 @@ class Shop
      */
     private function loadGoods(): void
     {
-        $artifactsData = $this->getDataFromDb();
-        $this->goods = $this->mapArtifacts($artifactsData);
+        $this->goods = $this->repository->all();
+//        dd($this->goods);
     }
 
     /**
@@ -74,26 +87,10 @@ class Shop
      *
      * @return array
      */
-    private function getDataFromDb(): array
+    private function getDataFromJson(): array
     {
         $artifactsJson = file_get_contents($this->getStoragePath());
         return json_decode($artifactsJson, true);
-    }
-
-    /**
-     * Map retrieved data to Artifact objects
-     *
-     * @param array $artifacts
-     * @return array
-     */
-    private function mapArtifacts(array $artifacts): array
-    {
-        $artifactsCollection = [];
-        foreach ($artifacts as $artifact) {
-            $artifactsCollection[] = new Artifact($artifact);
-        }
-
-        return $artifactsCollection;
     }
 
     /**

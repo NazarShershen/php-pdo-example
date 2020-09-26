@@ -10,8 +10,21 @@ services:
         - ./site.conf:/etc/nginx/conf.d/site.conf
     links:
         - php
-
   php:
     build: .
     volumes:
         - ./code:/code
+    environment:
+      XDEBUG_CONFIG: 'remote_host=192.168.1.115 remote_enable=1'
+      PHP_IDE_CONFIG: 'serverName=Docker'
+  db:
+    image: mysql:5.7
+    command: --default-authentication-plugin=mysql_native_password
+#    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: shop_db
+    ports:
+      - "3306:3306"
+    volumes:
+      - ~/projects/php-lection/database/shop.sql:/shop.sql
